@@ -134,3 +134,125 @@ console.log(`First name: ${mike.firstName}`);
 let mikeStr = `${mike.firstName} ${mike.lastName}, age: ${mike.age}`;
 console.log(mikeStr);
 
+let mikeAdvanced = {
+
+firstName: 'Mike',
+lastName: 'Bäck',
+age:38,
+hobbies: ['music', 'programming', 'reading', 'games']
+};
+
+console.log(mikeAdvanced); // Object
+let mikeJSON =(JSON.stringify(mikeAdvanced)); // Object till JSON
+console.log(mikeJSON);
+console.log(JSON.parse(mikeJSON)); // Back to object
+
+//Loop over object
+for(let propertyName in mikeAdvanced) {
+    let propertyValue = mikeAdvanced [propertyName];
+    console.log(propertyName, propertyValue);
+}
+// Loop through object and array inside of object
+for(let propertyName in mikeAdvanced) {            // Loop over object
+    let propertyValue = mikeAdvanced[propertyName];// Get value from key
+    if(Array.isArray(propertyValue) === true) {    // Check if array?
+        for(let hobby of propertyValue) {         // Loop over array
+            console.log("Hobby: " + hobby);
+        }
+    }else {
+        console.log(propertyName + "  :  " + propertyValue);
+    }
+}
+// Conectio to HTML
+// Ask JS to create a new element
+let myDiv = document.createElement('div');
+// Add some HTML
+myDiv.innerHTML = `
+<h1>Hello from JS!</h1>
+<p>This text is from JavaScript, my age is ${mike.age}</p>
+`;
+
+// Grab the body tag
+let body = document.querySelector('body');
+
+// Add the div to the THML
+body.append(myDiv);
+
+//Another way to add data
+let myBands = [
+    {
+        name: 'The Beatles',
+        genre: 'Pop'
+    },
+    {
+        name: 'The Rolling Stones',
+        genre: 'Rock'
+    }
+];
+// Grab the bands div
+let bandsDiv = document.querySelector('#bands');
+for(let band of myBands) {
+    bandsDiv.innerHTML += `
+    <div class="band">
+    <h2>${band.name}</h2>
+    <p>Genre: ${band.genre}<p>
+    </div>
+    `;
+}
+// Funktions
+function sayHello() {
+    console.log('Hello');
+
+}
+const sayHello2 = () => {
+    console.log('Hello 2');
+}
+sayHello();
+sayHello2();
+
+// Different ways of declaring the same function
+function add(a, b) {
+    return a + b;
+
+}
+// Arrow function
+const add2 = (a, b) => {
+    return a + b; 
+}
+// Function expression 
+const add3 = function(a, b) {
+    return a + b;
+
+}
+
+// Arrow function with imlicit return
+const add4 = (a, b) => { a + b;}
+
+    // Arrow function with imlicit return and parameter 
+    const add5 = a => a+5;
+
+    console.log(add(1, 2));
+    console.log(add2(1, 2));
+    console.log(add3(1, 2));
+    console.log(add4(1, 2));
+    console.log(add5(1));
+
+    // Classes
+    class Person {
+        constructor(name, age, hobby){
+            this.name = name;
+            this.age = age;
+            this.hobby = hobby;
+
+        }
+        greetings() {
+            console.log(`Hi, my name is ${this.name} and I am ${this.age}`);
+            console.log(`I enjoy: ` + this.hobby);
+
+        }
+    }
+    const mikeClass = new Person('Mike', 38,'Music');
+    mikeClass.greetings();
+    console.log(mikeClass.hobby);
+
+
